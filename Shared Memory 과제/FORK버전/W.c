@@ -108,6 +108,12 @@ int main(void)
 		printf("상대 pid : %d\n", R_pid);
 	
 		
+		if( msgctl(msgid, IPC_RMID,0) == -1)
+		{
+			fprintf(stderr, "msgctl(IPC_RMID) failed\n");
+			exit(EXIT_FAILURE);
+		}
+
 		// 공유메모리 생성
 		shmid = shmget((key_t)2004, sizeof(buffer) * SHMSIZE, 0666 | IPC_CREAT);	
 		if(shmid == -1)
