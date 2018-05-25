@@ -55,8 +55,8 @@ int main(void)
 
 	if(fork_result == 0)	//자식프로세스
 	{
-		execlp("R","R",(char*)0);
-
+		execlp("./R","R",(char*)0);
+		exit(EXIT_SUCCESS);
 	}
 
 	else			//부모프로세스
@@ -107,7 +107,7 @@ int main(void)
 		printf("나의 pid : %d\n", getpid());
 		printf("상대 pid : %d\n", R_pid);
 	
-		
+		// 메시지 큐 삭제
 		if( msgctl(msgid, IPC_RMID,0) == -1)
 		{
 			fprintf(stderr, "msgctl(IPC_RMID) failed\n");
